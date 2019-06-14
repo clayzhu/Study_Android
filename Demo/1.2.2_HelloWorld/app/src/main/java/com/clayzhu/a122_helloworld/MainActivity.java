@@ -1,4 +1,4 @@
-package com.clayzhu.helloworld;
+package com.clayzhu.a122_helloworld;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
