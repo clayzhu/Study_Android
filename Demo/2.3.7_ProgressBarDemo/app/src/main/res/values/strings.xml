@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProgressBarDemo</string>
+    <string name="pgbar_text">数据加载中...</string>
 </resources>
