@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.SystemClock;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.ImageButton;
@@ -24,8 +25,8 @@ public class MyButton extends ImageButton {
     private int eventX, eventY; //触摸位置的X,Y坐标
     private long downTime = 0;  //按下的时间
 
-    public MyButton(Context context) {
-        super(context);
+    public MyButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
         initPaint();
         TAP_TIMEOUT = ViewConfiguration.getLongPressTimeout();
     }
@@ -35,7 +36,7 @@ public class MyButton extends ImageButton {
         colorPaint = new Paint();
         bottomPaint = new Paint();
         colorPaint.setColor(getResources().getColor(R.color.reveal_color));
-        colorPaint.setColor(getResources().getColor(R.color.bottom_color));
+        bottomPaint.setColor(getResources().getColor(R.color.bottom_color));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class MyButton extends ImageButton {
                 if (SystemClock.elapsedRealtime() - downTime < TAP_TIMEOUT) {   // 短按
                     DIFFUSE_GAP = 30;
                     postInvalidate();
-                } else {    // 长按
+                } else {    // 长按抬起
                     clearData();
                 }
                 break;
