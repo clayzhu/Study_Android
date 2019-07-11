@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 定义一个用于显示头像的ImageView -->
+    <ImageView
+        android:id="@+id/img_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:baselineAlignBottom="true"
+        android:paddingLeft="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_aName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:textColor="#1d1d1c"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txt_aSpeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:textColor="#b4b4b9"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
