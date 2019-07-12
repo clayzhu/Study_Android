@@ -37,7 +37,10 @@ public class AnimalAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = LayoutInflater.from(mContext).inflate(R.layout.item_list_animal, viewGroup, false);
+        if (view == null) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.item_list_animal, viewGroup, false);
+        }
+
         ImageView img_icon = view.findViewById(R.id.img_icon);
         TextView txt_aName = view.findViewById(R.id.txt_aName);
         TextView txt_aSpeak = view.findViewById(R.id.txt_aSpeak);
