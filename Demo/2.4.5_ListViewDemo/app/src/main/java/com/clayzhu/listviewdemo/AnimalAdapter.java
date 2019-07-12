@@ -37,17 +37,25 @@ public class AnimalAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        ViewHolder holder = null;
         if (view == null) {
             view = LayoutInflater.from(mContext).inflate(R.layout.item_list_animal, viewGroup, false);
+            holder = new ViewHolder();
+            holder.img_icon = view.findViewById(R.id.img_icon);
+            holder.txt_aName = view.findViewById(R.id.txt_aName);
+            holder.txt_aSpeak = view.findViewById(R.id.txt_aSpeak);
+            view.setTag(holder);    //将Holder存储到view中
         }
 
-        ImageView img_icon = view.findViewById(R.id.img_icon);
-        TextView txt_aName = view.findViewById(R.id.txt_aName);
-        TextView txt_aSpeak = view.findViewById(R.id.txt_aSpeak);
-
-        img_icon.setBackgroundResource(mData.get(i).getaIcon());
-        txt_aName.setText(mData.get(i).getaName());
-        txt_aSpeak.setText(mData.get(i).getaSpeak());
+        holder.img_icon.setBackgroundResource(mData.get(i).getaIcon());
+        holder.txt_aName.setText(mData.get(i).getaName());
+        holder.txt_aSpeak.setText(mData.get(i).getaSpeak());
         return view;
+    }
+
+    static class ViewHolder {
+        ImageView img_icon;
+        TextView txt_aName;
+        TextView txt_aSpeak;
     }
 }
