@@ -72,4 +72,11 @@ public class MyAdapter extends BaseAdapter {
         mData.add(position, data);
         notifyDataSetChanged();
     }
+
+    public void remove(Data data) {
+        if (mData != null) {
+            mData.remove(data);
+        }
+        notifyDataSetChanged();
+    }
 }

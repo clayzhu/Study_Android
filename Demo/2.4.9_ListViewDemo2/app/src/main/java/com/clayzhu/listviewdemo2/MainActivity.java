@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
      * 往第五列插入一条数据
      */
     private Button btn_add2;
+    /**
+     * 根据对象删除数据
+     */
+    private Button btn_remove;
+    private Data mData_5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,19 +64,30 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         // 往第五列插入一条数据
         btn_add2 = findViewById(R.id.btn_add2);
         btn_add2.setOnClickListener(this);
+
+        // 根据对象删除数据
+        btn_remove = findViewById(R.id.btn_remove);
+        btn_remove.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_add:
+            case R.id.btn_add:  // 添加一条记录
                 mAdapter.add(new Data(R.mipmap.ic_icon_qitao, "给猪哥跪了～～～ x " + flag));
                 break;
-            case R.id.btn_add2:
+            case R.id.btn_add2: // 往第五列插入一条数据
                 if (mAdapter.getCount() < 4) {
                     return;
                 }
                 mAdapter.add(4, new Data(R.mipmap.ic_icon_qitao, "给猪哥跪了～～～ x " + flag));
+                break;
+            case R.id.btn_remove:   // 根据对象删除数据
+                if (mAdapter.getCount() < 5) {
+                    return;
+                }
+                mData_5 = mData.get(4);
+                mAdapter.remove(mData_5);
                 break;
         }
         flag ++;
