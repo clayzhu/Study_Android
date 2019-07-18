@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加一条记录" />
+
     <ListView
         android:id="@+id/list_one"
         android:layout_width="match_parent"

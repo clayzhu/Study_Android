@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.LinkedList;
 
 public class MyAdapter extends BaseAdapter {
@@ -51,11 +49,19 @@ public class MyAdapter extends BaseAdapter {
         }
         holder.img_icon.setImageResource(mData.get(i).getImgId());
         holder.txt_content.setText(mData.get(i).getContent());
-        return null;
+        return view;
     }
 
     private class ViewHolder {
         ImageView img_icon;
         TextView txt_content;
+    }
+
+    public void add(Data data) {
+        if (mData == null) {
+            mData = new LinkedList<>();
+        }
+        mData.add(data);
+        notifyDataSetChanged();
     }
 }
