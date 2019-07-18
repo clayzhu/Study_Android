@@ -34,6 +34,12 @@
             android:layout_height="wrap_content"
             android:text="根据对象删除数据" />
 
+        <Button
+            android:id="@+id/btn_remove2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="根据游标删除数据" />
+
     </LinearLayout>
 
     <ListView

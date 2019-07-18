@@ -79,4 +79,11 @@ public class MyAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+
+    public void remove(int position) {
+        if (mData != null) {
+            mData.remove(position);
+        }
+        notifyDataSetChanged();
+    }
 }
