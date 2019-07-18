@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
      */
     private Button btn_add;
     private int flag = 1;
+    /**
+     * 往第五列插入一条数据
+     */
+    private Button btn_add2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         // 添加一条记录
         btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(this);
+
+        // 往第五列插入一条数据
+        btn_add2 = findViewById(R.id.btn_add2);
+        btn_add2.setOnClickListener(this);
     }
 
     @Override
@@ -58,8 +66,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         switch (v.getId()) {
             case R.id.btn_add:
                 mAdapter.add(new Data(R.mipmap.ic_icon_qitao, "给猪哥跪了～～～ x " + flag));
-                flag ++;
+                break;
+            case R.id.btn_add2:
+                if (mAdapter.getCount() < 4) {
+                    return;
+                }
+                mAdapter.add(4, new Data(R.mipmap.ic_icon_qitao, "给猪哥跪了～～～ x " + flag));
                 break;
         }
+        flag ++;
     }
 }

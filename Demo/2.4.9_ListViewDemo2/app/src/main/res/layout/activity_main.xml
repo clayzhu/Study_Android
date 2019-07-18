@@ -6,11 +6,23 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_add"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="添加一条记录" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加一条记录" />
+
+        <Button
+            android:id="@+id/btn_add2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="往第五列插入一条数据" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list_one"

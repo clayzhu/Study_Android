@@ -64,4 +64,12 @@ public class MyAdapter extends BaseAdapter {
         mData.add(data);
         notifyDataSetChanged();
     }
+
+    public void add(int position, Data data) {
+        if (mData == null) {
+            mData = new LinkedList<>();
+        }
+        mData.add(position, data);
+        notifyDataSetChanged();
+    }
 }
