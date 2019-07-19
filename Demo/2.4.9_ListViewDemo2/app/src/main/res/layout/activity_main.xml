@@ -40,6 +40,12 @@
             android:layout_height="wrap_content"
             android:text="根据游标删除数据" />
 
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="移除所有记录" />
+
     </LinearLayout>
 
     <ListView

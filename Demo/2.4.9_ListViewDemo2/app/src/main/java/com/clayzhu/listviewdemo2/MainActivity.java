@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
      * 根据游标删除数据
      */
     private Button btn_remove2;
+    /**
+     * 移除所有记录
+     */
+    private Button btn_clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         // 根据游标删除数据
         btn_remove2 = findViewById(R.id.btn_remove2);
         btn_remove2.setOnClickListener(this);
+
+        // 移除所有记录
+        btn_clear = findViewById(R.id.btn_clear);
+        btn_clear.setOnClickListener(this);
     }
 
     @Override
@@ -104,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                     return;
                 }
                 mAdapter.remove(2);
+                break;
+            case R.id.btn_clear:    // 移除所有记录
+                mAdapter.clear();
                 break;
         }
     }

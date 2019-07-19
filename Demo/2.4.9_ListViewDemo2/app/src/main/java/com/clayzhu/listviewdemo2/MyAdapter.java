@@ -52,11 +52,6 @@ public class MyAdapter extends BaseAdapter {
         return view;
     }
 
-    private class ViewHolder {
-        ImageView img_icon;
-        TextView txt_content;
-    }
-
     public void add(Data data) {
         if (mData == null) {
             mData = new LinkedList<>();
@@ -85,5 +80,17 @@ public class MyAdapter extends BaseAdapter {
             mData.remove(position);
         }
         notifyDataSetChanged();
+    }
+
+    public void clear() {
+        if (mData != null) {
+            mData.clear();
+        }
+        notifyDataSetChanged();
+    }
+
+    private class ViewHolder {
+        ImageView img_icon;
+        TextView txt_content;
     }
 }
