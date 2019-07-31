@@ -13,12 +13,12 @@ import java.util.LinkedList;
 
 public abstract class MyAdapter<T> extends BaseAdapter {
 
-    private Context mContext;
     private LinkedList<T> mData;
+    private int mLayoutRes; //布局id
 
-    public MyAdapter(Context mContext, LinkedList<T> mData) {
-        this.mContext = mContext;
+    public MyAdapter(LinkedList<T> mData, int mLayoutRes) {
         this.mData = mData;
+        this.mLayoutRes = mLayoutRes;
     }
 
     @Override
@@ -27,8 +27,8 @@ public abstract class MyAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public T getItem(int i) {
+        return mData.get(i);
     }
 
     @Override
@@ -38,19 +38,9 @@ public abstract class MyAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = null;
-        if (view == null) {
-//            view = LayoutInflater.from(mContext).inflate(R.layout.item_list, viewGroup, false);
-//            holder = new ViewHolder();
-//            holder.img_icon = view.findViewById(R.id.img_icon);
-//            holder.txt_content = view.findViewById(R.id.txt_content);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-//        holder.img_icon.setImageResource(mData.get(i).getImgId());
-//        holder.txt_content.setText(mData.get(i).getContent());
-        return view;
+        ViewHolder holder = ViewHolder.bind(viewGroup.getContext(), view, viewGroup, mLayoutRes, i);
+        bindView(holder, getItem(i));
+        return holder.getItemView();
     }
 
     public abstract void bindView(ViewHolder holder, T obj);
