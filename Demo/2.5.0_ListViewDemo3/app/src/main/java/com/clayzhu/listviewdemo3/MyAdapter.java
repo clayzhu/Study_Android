@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
-public class MyAdapter<T> extends BaseAdapter {
+public abstract class MyAdapter<T> extends BaseAdapter {
 
     private Context mContext;
     private LinkedList<T> mData;
@@ -52,6 +52,8 @@ public class MyAdapter<T> extends BaseAdapter {
 //        holder.txt_content.setText(mData.get(i).getContent());
         return view;
     }
+
+    public abstract void bindView(ViewHolder holder, T obj);
 
     public void add(T data) {
         if (mData == null) {
