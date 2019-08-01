@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public abstract class MyAdapter<T> extends BaseAdapter {
 
     private ArrayList<T> mData;
-    private int mLayoutRes; //布局id
+    private int mLayoutRes; // 布局 id
 
     public MyAdapter(ArrayList<T> mData, int mLayoutRes) {
         this.mData = mData;
@@ -23,7 +23,7 @@ public abstract class MyAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mData.size();
+        return mData != null ? mData.size() : 0;
     }
 
     @Override
@@ -45,6 +45,9 @@ public abstract class MyAdapter<T> extends BaseAdapter {
 
     public abstract void bindView(ViewHolder holder, T obj);
 
+    /**
+     * 添加一个元素
+     */
     public void add(T data) {
         if (mData == null) {
             mData = new ArrayList<>();
@@ -53,6 +56,9 @@ public abstract class MyAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 往指定位置，添加一个元素
+     */
     public void add(int position, T data) {
         if (mData == null) {
             mData = new ArrayList<>();
@@ -61,6 +67,9 @@ public abstract class MyAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 删除指定元素
+     */
     public void remove(T data) {
         if (mData != null) {
             mData.remove(data);
@@ -68,6 +77,9 @@ public abstract class MyAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 删除指定位置的元素
+     */
     public void remove(int position) {
         if (mData != null) {
             mData.remove(position);
@@ -75,6 +87,9 @@ public abstract class MyAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 清空所有元素
+     */
     public void clear() {
         if (mData != null) {
             mData.clear();
@@ -83,24 +98,20 @@ public abstract class MyAdapter<T> extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        private SparseArray<View> mViews;   //存储ListView 的 item中的View
-        private View item;  //存放convertView
-        private int position;   //游标
-        private Context context;    //Context上下文
 
-        //构造方法，完成相关初始化
+        private SparseArray<View> mViews;   // 存储 ListView 的 item 中的 View
+        private View item;  // 存放 convertView
+        private int position;   // 游标
+
+        // 构造方法，完成相关初始化
         private ViewHolder(Context context, ViewGroup parent, int layoutRes) {
             mViews = new SparseArray<>();
-            this.context = context;
             View convertView = LayoutInflater.from(context).inflate(layoutRes, parent, false);
             convertView.setTag(this);
             item = convertView;
         }
 
-        ImageView img_icon;
-        TextView txt_content;
-
-        //绑定ViewHolder与item
+        // 绑定 ViewHolder 与 item
         public static ViewHolder bind(Context context, View convertView, ViewGroup parent, int layoutRes, int postion) {
             ViewHolder holder;
             if (convertView == null) {
@@ -113,7 +124,7 @@ public abstract class MyAdapter<T> extends BaseAdapter {
             return holder;
         }
 
-        // 根据id获取集合中保存的控件
+        // 根据 id 获取集合中保存的控件
         public <T extends View> T getView(int id) {
             T t = (T) mViews.get(id);
             if (t == null) {
@@ -184,5 +195,7 @@ public abstract class MyAdapter<T> extends BaseAdapter {
             getView(id).setTag(obj);
             return this;
         }
+
+        // 其他方法可自行扩展
     }
 }
