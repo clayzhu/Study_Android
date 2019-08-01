@@ -9,14 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public abstract class MyAdapter<T> extends BaseAdapter {
 
-    private LinkedList<T> mData;
+    private ArrayList<T> mData;
     private int mLayoutRes; //布局id
 
-    public MyAdapter(LinkedList<T> mData, int mLayoutRes) {
+    public MyAdapter(ArrayList<T> mData, int mLayoutRes) {
         this.mData = mData;
         this.mLayoutRes = mLayoutRes;
     }
@@ -47,7 +47,7 @@ public abstract class MyAdapter<T> extends BaseAdapter {
 
     public void add(T data) {
         if (mData == null) {
-            mData = new LinkedList<>();
+            mData = new ArrayList<>();
         }
         mData.add(data);
         notifyDataSetChanged();
@@ -55,7 +55,7 @@ public abstract class MyAdapter<T> extends BaseAdapter {
 
     public void add(int position, T data) {
         if (mData == null) {
-            mData = new LinkedList<>();
+            mData = new ArrayList<>();
         }
         mData.add(position, data);
         notifyDataSetChanged();
