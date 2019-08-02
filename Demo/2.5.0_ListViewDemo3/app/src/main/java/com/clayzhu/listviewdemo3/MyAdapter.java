@@ -27,19 +27,19 @@ public abstract class MyAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public T getItem(int i) {
-        return mData.get(i);
+    public T getItem(int position) {
+        return mData.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = ViewHolder.bind(viewGroup.getContext(), view, viewGroup, mLayoutRes, i);
-        bindView(holder, getItem(i));
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = ViewHolder.bind(parent.getContext(), convertView, parent, mLayoutRes, position);
+        bindView(holder, getItem(position));
         return holder.getItemView();
     }
 
