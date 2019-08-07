@@ -16,7 +16,7 @@
 
     <Spinner
         android:id="@+id/spin_one"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="64dp"
         android:entries="@array/data"
         android:prompt="@string/spin_title"
