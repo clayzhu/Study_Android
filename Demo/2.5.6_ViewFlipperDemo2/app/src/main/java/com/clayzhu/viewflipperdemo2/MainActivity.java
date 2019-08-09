@@ -1,24 +1,33 @@
 package com.clayzhu.viewflipperdemo2;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context mContext;
     private ViewFlipper vflp_help;
 
     private int[] resId = {R.mipmap.ic_help_view_1, R.mipmap.ic_help_view_2, R.mipmap.ic_help_view_3, R.mipmap.ic_help_view_4};
 
-    private float startX;
-    private boolean isChange;
+    private final static int MIN_MOVE = 200;    //最小距离
+    private MyGestureListener mgListener;
+    private GestureDetector mDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mContext = MainActivity.this;
+        //实例化SimpleOnGestureListener与GestureDetector对象
+        mgListener = new MyGestureListener();
+        mDetector = new GestureDetector(this, mgListener);
 
         vflp_help = findViewById(R.id.vflp_help);
         //动态导入添加子View
@@ -27,29 +36,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //重写onTouchEvent触发MyGestureListener里的方法
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                startX = event.getX();
-                isChange = true;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (isChange) {
-                    if (event.getX() > startX) {    // 向右滑动，看前一页
-                        vflp_help.setInAnimation(this, R.anim.left_in);
-                        vflp_help.setOutAnimation(this, R.anim.left_out);
-                        vflp_help.showPrevious();
-                    } else if (startX > event.getX()) { // 向左滑动，看后一页
-                        vflp_help.setInAnimation(this, R.anim.right_in);
-                        vflp_help.setOutAnimation(this, R.anim.right_out);
-                        vflp_help.showNext();
-                    }
-                    isChange = false;
-                }
-                break;
+        return mDetector.onTouchEvent(event);
+    }
+
+    //自定义一个GestureListener,这个是View类下的，别写错哦！！！
+    private class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (e1.getX() - e2.getX() > MIN_MOVE) { // 向左滑动，看后一页
+                vflp_help.setInAnimation(mContext, R.anim.right_in);
+                vflp_help.setOutAnimation(mContext, R.anim.right_out);
+                vflp_help.showNext();
+            } else if (e2.getX() - e1.getX() > MIN_MOVE) {  // 向右滑动，看前一页
+                vflp_help.setInAnimation(mContext, R.anim.left_in);
+                vflp_help.setOutAnimation(mContext, R.anim.left_out);
+                vflp_help.showPrevious();
+            }
+            return true;
         }
-        return super.onTouchEvent(event);
     }
 
     private ImageView getImageView(int resId) {
