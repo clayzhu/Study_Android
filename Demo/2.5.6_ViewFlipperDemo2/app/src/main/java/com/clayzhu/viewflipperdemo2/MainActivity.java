@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private int[] resId = {R.mipmap.ic_help_view_1, R.mipmap.ic_help_view_2, R.mipmap.ic_help_view_3, R.mipmap.ic_help_view_4};
 
     private float startX;
+    private boolean isChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +32,20 @@ public class MainActivity extends AppCompatActivity {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startX = event.getX();
+                isChange = true;
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (event.getX() > startX) {    // 向右滑动，看前一页
-                    vflp_help.setInAnimation(this, R.anim.left_in);
-                    vflp_help.setOutAnimation(this, R.anim.left_out);
-                    vflp_help.showPrevious();
-                } else if (startX > event.getX()) { // 向左滑动，看后一页
-                    vflp_help.setInAnimation(this, R.anim.right_in);
-                    vflp_help.setOutAnimation(this, R.anim.right_out);
-                    vflp_help.showNext();
+                if (isChange) {
+                    if (event.getX() > startX) {    // 向右滑动，看前一页
+                        vflp_help.setInAnimation(this, R.anim.left_in);
+                        vflp_help.setOutAnimation(this, R.anim.left_out);
+                        vflp_help.showPrevious();
+                    } else if (startX > event.getX()) { // 向左滑动，看后一页
+                        vflp_help.setInAnimation(this, R.anim.right_in);
+                        vflp_help.setOutAnimation(this, R.anim.right_out);
+                        vflp_help.showNext();
+                    }
+                    isChange = false;
                 }
                 break;
         }
