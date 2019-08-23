@@ -3,8 +3,11 @@ package com.clayzhu.menudemo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     final private int BLACK= 116;
 
     private TextView tv_test;
+    private TextView tv_context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tv_test = findViewById(R.id.tv_test);
+
+        tv_context = findViewById(R.id.tv_context);
+        registerForContextMenu(tv_context);
     }
 
     @Override
@@ -71,5 +78,31 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //重写与ContextMenu相关方法
+    @Override
+    //重写上下文菜单的创建方法
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.menu_context, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    //上下文菜单被点击是触发该方法
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.blue:
+                tv_context.setTextColor(Color.BLUE);
+                break;
+            case R.id.green:
+                tv_context.setTextColor(Color.GREEN);
+                break;
+            case R.id.red:
+                tv_context.setTextColor(Color.RED);
+                break;
+        }
+        return true;
     }
 }
