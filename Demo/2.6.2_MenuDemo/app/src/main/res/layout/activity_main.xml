@@ -22,4 +22,13 @@
         android:text="长按我变色~"
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/btn_show_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_context"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="显示一个PopupMenu" />
+
 </RelativeLayout>
