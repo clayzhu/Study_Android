@@ -5,12 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="#FFFFFF"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/btn_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ViewPager使用示例1" />
+
+    <Button
+        android:id="@+id/btn_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ViewPager使用示例2" />
 
 </LinearLayout>
