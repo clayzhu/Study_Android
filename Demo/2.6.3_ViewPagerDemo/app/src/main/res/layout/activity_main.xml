@@ -20,4 +20,10 @@
         android:layout_height="wrap_content"
         android:text="ViewPager使用示例2" />
 
+    <Button
+        android:id="@+id/btn_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ViewPager使用示例3" />
+
 </LinearLayout>
